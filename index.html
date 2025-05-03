@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Mentor Secondary School</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+        }
+
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .home-page1 {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/mentorGate.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+            min-height: 100vh;
+            margin-bottom: 4rem;
+            width: 100%;
+            
+
+        }
+
+        .home-page1 p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .home-page1 h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .button1 {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 0.9s both;
+        }
+
+        .button1:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .motto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .motto1 {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .motto1:hover {
+            transform: translateY(-10px);
+        }
+
+        .motto1 i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .motto1 h1 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .motto1 p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        ..welcome-message {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .welcome-message h1 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .welcome-message h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-message p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .welcome-message img {
+            width: 150px;
+            height: auto;
+            float: left;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        .homepage2 {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .homepage2 img {
+            width: 50%;
+            border-radius: 8px;
+            object-fit: cover;
+            height: 400px;
+        }
+
+        .homepage2 .content {
+            width: 50%;
+        }
+
+        .homepage2 h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .homepage2 p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .button2 {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button2:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .button2 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .homepage3 {
+            text-align: center;
+        }
+
+        .homepage3 h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .homepage3 p {
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .home-pictures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pictures {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .pictures:hover {
+            transform: translateY(-10px);
+        }
+
+        .pictures img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .pictures h2 {
+            font-size: 1.2rem;
+            padding: 1.5rem 1.5rem 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .pictures span {
+            display: block;
+            padding: 0 1.5rem 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .hompage4 {
+            text-align: center;
+        }
+
+        .homepage4-text h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .homepage4-text p {
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .eduction-programs {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .eduction-programs:hover {
+            transform: translateY(-10px);
+        }
+
+        .eduction-programs img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .eduction-programs-content {
+            padding: 1.5rem;
+        }
+
+        .eduction-programs-content h2 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .eduction-programs-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .home-page1 {
+                padding: 4rem 1rem;
+            }
+
+            .home-page1 h2 {
+                font-size: 1.8rem;
+            }
+
+            .homepage2 {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            .homepage2 img,
+            .homepage2 .content {
+                width: 100%;
+            }
+
+            .welcome-message {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .motto {
+                grid-template-columns: 1fr;
+            }
+
+            .home-pictures {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Mentor Secondary School Logo">
+            <h2>Mentor Secondary School</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Staff Profile</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+            </ul>
+        </nav>
+    </header>
+        <section class="home-page1 visible">
+            <p>Naturing young minds to achieve academic excellence and personal growth.</p>
+            <h2>Welcome To Mentor Secondary School</h2>
+            <button class="button1"><a href="tel:+256777891441">Contact Us</a></button>
+        </section>
+    <main>
+        
+
+        <section class="motto">
+            <div class="motto1">
+                <i class='bx bxl-telegram'></i>
+                <h1>SCHOOL MOTTO</h1>
+                <p>We Nurture For Success</p>
+            </div>
+
+            <div class="motto1">
+                <i class='bx bx-home'></i>
+                <h1>SCHOOL VISION</h1>
+                <P>To be a Center of Excellence All Round Achivers</P>
+            </div>
+            <div class="motto1">
+                <i class='bx bxs-star'></i>
+                <h1>SCHOOL MISSION</h1>
+                <p>To Produce Practical Responsible Citizens With High Academic Standards And Moral Values</p>
+            </div>
+            <div class="motto1">
+                <i class='bx bx-male-female'></i>
+                <h1>SCHOOL VALUES</h1>
+                <p>God Fearing,Discipline, Self-Drive, High self-esteem. </p>
+            </div>
+        </section>
+
+        <section class="welcome-message">
+            <h1>INTRODUCTION</h1>
+            <h2>Welcome Message From The HeadTeacher</h2>
+            <img src="images/headtecher.jpg" alt="">
+            <P>I take this opportunity to welcome you to our website.
+                I am glad you have taken keen interest in finding out and knowing more about Mentor Senior
+                Secondary School (MSSS). There is no doubt; you won't go wrong finding more about us.
+
+                UMSSN is an education institution that is dedicated to providing a holistic education that is,
+                producing academically sound, physically fit, socially balanced and God-fearing citizens.
+                This is attained by putting emphasis on academics and co-curricular activities.
+                I must say, I am proud to be associated with MSSS, a school that is driven by her vision
+                "To be a model school in the formation of God-fearing, academically excellent and responsible leaders
+                ." We do our best to realize our dream and not just offer our vision lip-service;
+                we do whatever it takes to walk the talk. As Headmaster, I must comment that much as we have keen
+                interest in academics,
+                we have also dedicated ourselves to those learning activities outside the classroom and of course not
+                forgetting
+                the welfare of every member of the community. It is important to note that to ensure effective running
+                of co-curricular
+                activities, different offices have been put in place at all levels, right from the headmaster's office
+                to the students
+                ' prefectorate. There is a teacher in charge of all Co-curricular activities, the Director of
+                Co-curricular activities,
+                a Games master, Club patrons and Patrons of religious movements among others.
+                At the students' level we have students' executives of different clubs and religious movements;
+                we also have prefects in charge of sports and prefects in charge of Co-curricular activities.
+                This structure of leadership has seen MSSS excelling in Co-curricular activities.
+                Another area for consideration is the spiritual welfare of the community.
+                MSSS's success and progress is grounded on the belief. "The fear of God is the beginning of wisdom."
+                We never grow tired of praying through them to intercede for us.
+
+                Our spiritual life and activities are centrally organized and facilitated by the school Chaplain;
+                we count ourselves blessed to have a full time chaplain at campus. My dear visitor(s) once again a
+                llow me to express my heartfelt gratitude to you for taking off some time to find out and know more
+                about MSSS. Surely your knowledge about us adds color to who we are. May you be blessed.</P>
+        </section>
+
+        <section class="homepage2">
+            <img src="images/icons.jpg" alt="Academic Excellence">
+
+            <div class="content">
+                <h2>Academic Excellence</h2>
+                <p>At Mentor Secondary, We prioritize high academic standards ensuring that our students are well
+                    prepared for their future endeavors. Our dedicated faculty employs innovative teaching methods that
+                    foster a love for learning.</p>
+                <button class="button2"><a href="profile.html">Discover More</a></button>
+            </div>
+        </section>
+
+        <section class="homepage3">
+            <h2>Latest School Updates</h2>
+            <p>Stay informed with our most recent announcements and events happening at our secondary school</p>
+
+            <div class="home-pictures">
+                <div class="pictures">
+                    <img src="images/icons.jpg" alt="Parent-Teacher Meeting">
+                    <h2>Upcoming Parent-Teacher Meeting</h2>
+                    <span>JULY 10TH 2025</span>
+                </div>
+
+                <div class="pictures">
+                    <img src="images/icons.jpg" alt="Sports Day">
+                    <h2>Sports Day Success</h2>
+                    <span>AUGUST 10TH 2025</span>
+                </div>
+
+                <div class="pictures">
+                    <img src="images/icons.jpg" alt="Science Fair">
+                    <h2>Annual Science Fair Highlights</h2>
+                    <span>AUGUST 2ND</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="hompage4">
+            <div class="homepage4-text">
+                <h2>Innovative Education Programs</h2>
+                <p>Explore the diverse range of programs designed to enhance learning and personal growth</p>
+            </div>
+
+            <div class="main-content">
+                <div class="eduction-programs">
+                    <img src="images/culture.jpg" alt="Arts and Culture">
+                    <div class="eduction-programs-content">
+                        <h2>Arts and Culture</h2>
+                        <p>The arts and culture program encourage creativity and artistic expression. Students
+                            participate in various disciplines, including music, drama, visual arts, promoting cultural
+                            awareness and self confidence through performances and exhibitions.</p>
+                    </div>
+                </div>
+
+                <div class="eduction-programs">
+                    <img src="images/icons.jpg" alt="Sports and Wellness">
+                    <div class="eduction-programs-content">
+                        <h2>Sports and Wellness</h2>
+                        <p>Our sports and wellness program focuses on physical health and team work. Regular physical
+                            activities, competitions and wellness workshops cultivate a healthy lifestyle and teach the
+                            value of discipline, respect and sportsmanship.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Mentor Secondary School 2025. All rights reserved</p>
+    </footer>
+
+    <script>
+        // Scroll animation for sections
+        document.addEventListener('DOMContentLoaded', function () {
+            const sections = document.querySelectorAll('section');
+
+            // Initially hide all sections except the first one
+            sections.forEach((section, index) => {
+                if (index !== 0) {
+                    section.classList.remove('visible');
+                }
+            });
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            // Observe all sections
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Text animation for welcome message
+            const welcomeMessage = document.querySelector('.welcome-message p');
+            if (welcomeMessage) {
+                const text = welcomeMessage.textContent;
+                welcomeMessage.textContent = '';
+
+                for (let i = 0; i < text.length; i++) {
+                    setTimeout(() => {
+                        welcomeMessage.textContent += text[i];
+                    }, i * 20);
+                }
+            }
+
+            // Hover animation for buttons
+            const buttons = document.querySelectorAll('.button1, .button2');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                    button.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    button.style.transform = 'translateY(0)';
+                    button.style.boxShadow = 'none';
+                });
+            });
+
+            // Animation for motto cards
+            const mottoCards = document.querySelectorAll('.motto1');
+            mottoCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+
+</html>

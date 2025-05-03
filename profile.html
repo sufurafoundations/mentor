@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Profile - Mentor Secondary School</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+        }
+
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/adimBlock.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .staff-profiles {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .profile-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-card:hover .profile-image img {
+            transform: scale(1.05);
+        }
+
+        .profile-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .profile-info h2 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .profiles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .profiles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Mentor Secondary School Logo">
+            <h2>Mentor Secondary School</h2>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="profile.html">Staff Profile</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+                <li><a href="faq.html">FAQs</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Our Dedicated Staff Members</h1>
+    </div>
+
+    <section class="staff-profiles">
+        <div class="profiles-grid">
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="Head Teacher">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>Head Teacher</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="Director Of Studies">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>Director Of Studies</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="Deputy Head Teacher">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>Deputy Head Teacher</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="H.O.D Physics">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>H.O.D Physics</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="School Director">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>School Director</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="H.O.D Mathematics">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>H.O.D Mathematics</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="H.O.D Agriculture">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>H.O.D Agriculture</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="H.O.D History">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>H.O.D History</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-image">
+                    <img src="images/icons.jpg" alt="H.O.D Languages">
+                </div>
+                <div class="profile-info">
+                    <h2>HURUNA LUBWAMA</h2>
+                    <p>H.O.D Languages</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Mentor Secondary School 2025. All rights reserved</p>
+    </footer>
+
+    <script>
+        // Scroll animation for profile cards
+        document.addEventListener('DOMContentLoaded', function () {
+            const profileCards = document.querySelectorAll('.profile-card');
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 150);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all profile cards
+            profileCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Header animation
+            const header = document.querySelector('header');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll <= 0) {
+                    header.style.transform = 'translateY(0)';
+                    return;
+                }
+
+                if (currentScroll > lastScroll && !header.classList.contains('scroll-down')) {
+                    header.style.transform = 'translateY(-100%)';
+                } else if (currentScroll < lastScroll && header.classList.contains('scroll-down')) {
+                    header.style.transform = 'translateY(0)';
+                }
+
+                lastScroll = currentScroll;
+            });
+
+            // Hero text animation
+            const heroText = document.querySelector('.hero h1');
+            if (heroText) {
+                heroText.style.opacity = '0';
+                setTimeout(() => {
+                    heroText.style.opacity = '1';
+                }, 500);
+            }
+        });
+    </script>
+</body>
+
+</html>
